@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collab Room</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h3>Room: <span id="room-name">Main</span></h3>
+            <button onclick="copyLink()">Copy Link</button>
+        </div>
+
+        <div class="main-content">
+    <div id="video-grid"></div>
+    
+   <div class="whiteboard-container">
+    <div class="wb-header">
+        <h4>Whiteboard</h4>
+        
+        <div class="wb-controls">
+            <label>Color: <input type="color" id="wb-color" value="#000000"></label>
+            <label>Size: <input type="range" id="wb-size" min="2" max="30" value="3"></label>
+            <button onclick="activateEraser()" id="eraser-btn">Eraser</button>
+            <button onclick="activatePen()" id="pen-btn">Pen</button>
+            <button onclick="clearBoard()" style="background: #dc3545;">Clear</button>
+        </div>
+    </div>
+    
+    <canvas id="whiteboard"></canvas>
+</div>
+
+    <div class="chat-section">
+        <div class="chat-header">Chat</div>
+        <div class="chat-window" id="chat-window">
+            </div>
+        <div class="chat-input-area">
+            <input type="file" id="file-input" hidden onchange="sendFile()">
+            <button onclick="document.getElementById('file-input').click()" class="attach-btn">📎</button>
+            <input type="text" id="chat-message" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+        
+        <div class="controls">
+            <button onclick="toggleAudio()">Mute Audio</button>
+            <button onclick="toggleVideo()">Stop Video</button>
+            <button id="share-screen-btn" onclick="toggleScreenShare()">Share Screen</button>
+            <button onclick="leaveRoom()">Leave</button>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
